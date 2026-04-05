@@ -1,0 +1,162 @@
+/* Base setup - applying our custom premium font and setting a clean off-white background */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  background-color: #f4f7f6; 
+  transition: background-color 0.5s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Giving cards that modern SaaS look with soft shadows and rounded edges */
+.card {
+  border: 1px solid rgba(0,0,0,0.03) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(149, 157, 165, 0.08) !important;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease !important;
+  background-color: #ffffff;
+}
+
+/* Little hover float effect to make the UI feel alive */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(149, 157, 165, 0.15) !important;
+}
+
+/* Squishy buttons! Adds a nice tactile "press" feel when clicked */
+.btn {
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease-in-out !important;
+}
+.btn:active {
+  transform: scale(0.96) !important; 
+}
+
+/* Cleaning up default inputs and adding a soft blue focus ring */
+.form-control, .form-select {
+  border-radius: 10px !important;
+  border: 1px solid #e1e5eb !important;
+  padding: 0.7rem 1rem !important;
+  background-color: #f9fafc !important;
+  transition: all 0.2s ease !important;
+}
+.form-control:focus, .form-select:focus {
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.12) !important;
+  border-color: #0d6efd !important;
+}
+
+/* Visual feedback for drag and drop so users know they grabbed a task */
+[draggable="true"] {
+  cursor: grab;
+}
+[draggable="true"]:active {
+  cursor: grabbing;
+  opacity: 0.7;
+  transform: scale(0.98);
+}
+
+/* Deep dark mode overrides - skipping the standard gray for a sleek deep space look */
+[data-bs-theme="dark"] body {
+  background-color: #0f1115;
+}
+[data-bs-theme="dark"] .card {
+  background-color: #1a1d24 !important;
+  border-color: rgba(255,255,255,0.05) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+[data-bs-theme="dark"] .form-control, 
+[data-bs-theme="dark"] .form-select {
+  background-color: #22262f !important;
+  border-color: #2d323e !important;
+  color: white !important;
+}
+[data-bs-theme="dark"] .form-control:focus, 
+[data-bs-theme="dark"] .form-select:focus {
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.2) !important;
+}
+[data-bs-theme="dark"] .text-muted {
+  color: #8b949e !important;
+}
+
+/* Gmail-style circular avatar for the profile dropdown */
+.avatar-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s;
+}
+.avatar-circle:hover {
+  transform: scale(1.05);
+}
+
+/* The slide-in animation for our new add task panel */
+.slide-in-right {
+  animation: slideInRight 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.task-area-transition {
+  transition: width 0.3s ease-in-out;
+}
+
+/* Converting standard buttons into sleek circular icon buttons for the task list */
+.btn-icon-rounded {
+  width: 36px;
+  height: 36px;
+  border-radius: 50% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Bug fix: Prevents super long unbroken text from spilling out of the cards */
+.card-title, .card-text {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* --- CUSTOM DELETE MODAL --- */
+.custom-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.custom-modal-card {
+  width: 90%;
+  max-width: 380px;
+  animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 16px !important;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.search-padded {
+  padding-left: 45px !important;
+}
